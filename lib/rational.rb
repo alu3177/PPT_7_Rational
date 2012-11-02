@@ -24,4 +24,6 @@ class RationalNumber
         return r[i-1]
     end
 
+    private :reduce, :mcd
+
 end
