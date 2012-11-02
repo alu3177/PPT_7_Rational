@@ -23,4 +23,16 @@ describe RationalNumber do
         @rat.denom.should == reducida[1]
     end
 
+    it "Se debe invocar al metodo num() para obtener el numerador" do
+        @rat.num().should == reducida[0]
+    end
+
+    it "Se debe invocar al metodo denom() para obtener el denominador" do
+        @rat.denom().should == reducida[1]
+    end
+
+    it "Se debe mostar por la consola la fraccion de la forma: a/b, donde a es el numerador y b el denominador" do
+        @rat.to_s.should == "#{reducida[0]}/#{reducida[1]}"
+    end
+
 end

@@ -1,9 +1,16 @@
 class RationalNumber
-    attr_accessor :num, :denom
     def initialize(numerador, denominador)
         @num = numerador
         @denom = denominador
         reduce  # Simplificamos
+    end
+
+    def num
+        @num
+    end
+
+    def denom
+        @denom
     end
 
     # Se encarga de simplificar la fraccion al minimo
@@ -24,6 +31,9 @@ class RationalNumber
         return r[i-1]
     end
 
-    private :reduce
+    def to_s
+        "#{@num}/#{@denom}"
+    end
 
+    private :reduce
 end
