@@ -35,5 +35,44 @@ class RationalNumber
         "#{@num}/#{@denom}"
     end
 
+    def to_f
+        @num / @denom
+    end
+
+    def == (r)
+        if r.kind_of? RationalNumber
+            return ( (r.num == self.num) and (r.denom == self.denom) )
+        else
+            return false
+        end
+    end
+
+    def abs
+        nume = 0
+        denomi = 0
+        if @num < 0
+            nume = @num * -1
+        else
+            nume = @num
+        end
+        if @denom < 0
+            denomi = @denom * -1
+        else
+            denomi = @denom
+        end
+        result = RationalNumber.new(nume, denomi)  # Devolvemos el numero racional en sí
+        return result
+    end
+
+    def reciprocal
+        result = RationalNumber.new(@denom, @num)
+        return result
+    end
+
+    def -@
+        result = RationalNumber.new(@num * -1, @denom)
+        return result
+    end
+
     private :reduce
 end
