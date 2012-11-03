@@ -2,9 +2,9 @@ require 'rational'
 
 describe RationalNumber do
 
-    let (:numerador) { 6 }
+    let (:numerador) { -6 }
     let (:denominador) { 4 }
-    let (:reducida) {[3, 2]} # Array con el numerador y el denominador reducidos
+    let (:reducida) {[-3, 2]} # Array con el numerador y el denominador reducidos
 
     before :all do
         @rat = RationalNumber.new(numerador, denominador)
@@ -33,6 +33,33 @@ describe RationalNumber do
 
     it "Se debe mostar por la consola la fraccion de la forma: a/b, donde a es el numerador y b el denominador" do
         @rat.to_s.should == "#{reducida[0]}/#{reducida[1]}"
+    end
+
+    it "Se debe mostar por la consola la fraccion en formato flotante" do
+        @rat.to_f.should == (numerador / denominador)
+    end
+
+    it "Se debe comparar si dos fracciones son iguales con ==" do
+        rat2 = RationalNumber.new(numerador, denominador)
+        @rat.should == rat2
+    end
+
+    it "Se debe calcular el valor absoluto de una fraccion con el metodo abs" do
+        rat2 = RationalNumber.new(numerador * -1, denominador)
+        @rat.abs.should == rat2
+    end
+
+    it "Se debe calcular el reciproco de una fraccion con el metodo reciprocal" do
+        rat2 = RationalNumber.new(denominador, numerador)
+        @rat.reciprocal.should == rat2
+    end
+
+    it "Se debe calcular el opuesto de una fraccion con -" do
+        rat2 = RationalNumber.new(numerador * -1, denominador)
+        @rat.should == -rat2
+    end
+
+    it "Se debe sumar dos fracciones con + y dar el resultado de forma reducida" do
     end
 
 end
