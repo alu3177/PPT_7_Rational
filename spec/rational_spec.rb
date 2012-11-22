@@ -2,9 +2,9 @@ require 'rational'
 
 describe RationalNumber do
 
-    let (:numerador) { -6 }
+    let (:numerador) { 6 }
     let (:denominador) { 4 }
-    let (:reducida) {[-3, 2]} # Array con el numerador y el denominador reducidos
+    let (:reducida) {[3, 2]} # Array con el numerador y el denominador reducidos
 
     before :all do
         @rat = RationalNumber.new(numerador, denominador)
@@ -46,7 +46,7 @@ describe RationalNumber do
 
     it "Se debe calcular el valor absoluto de una fraccion con el metodo abs" do
         rat2 = RationalNumber.new(numerador * -1, denominador)
-        @rat.abs.should == rat2
+        rat2.abs.should == @rat
     end
 
     it "Se debe calcular el reciproco de una fraccion con el metodo reciprocal" do
@@ -60,6 +60,63 @@ describe RationalNumber do
     end
 
     it "Se debe sumar dos fracciones con + y dar el resultado de forma reducida" do
+        rat2 = RationalNumber.new(8, 15)
+        rat_result = RationalNumber.new(@rat.num * rat2.denom + rat2.num * @rat.denom, @rat.denom * rat2.denom)
+        rat_result.reduce
+
+        rat_result.should == @rat + rat2
+    end
+
+    it "Se debe restar dos fracciones con - y dar el resultado de forma reducida" do
+        rat2 = RationalNumber.new(8, 15)
+        rat_result = RationalNumber.new(@rat.num * rat2.denom - rat2.num * @rat.denom, @rat.denom * rat2.denom)
+        rat_result.reduce
+
+        rat_result.should == @rat - rat2
+    end
+
+    it "Se debe multiplicar dos fracciones con * y dar el resultado de forma reducida" do
+        rat2 = RationalNumber.new(8, 15)
+        rat_result = RationalNumber.new(@rat.num * rat2.num, @rat.denom * rat2.denom)
+        rat_result.reduce
+
+        rat_result.should == @rat * rat2
+    end
+
+    it "Se debe dividir dos fracciones con / y dar el resultado de forma reducida" do
+        rat2 = RationalNumber.new(8, 15)
+        rat_result = RationalNumber.new(@rat.num * rat2.denom, @rat.denom * rat2.num)
+        rat_result.reduce
+
+        rat_result.should == @rat / rat2
+    end
+
+    it "Se debe calcular el resto dos fracciones con % y dar el resultado de forma reducida" do
+        rat2 = RationalNumber.new(8, 15)
+        rat_result = RationalNumber.new(@rat.num % rat2.denom, @rat.denom % rat2.num)
+        rat_result.reduce
+
+        rat_result.should == @rat % rat2
+    end
+
+    it "Se debe de poder comprobar si una fracion es menor que otra" do
+        rat2 = RationalNumber.new(0, 1)
+        (@rat < rat2).should == false
+    end
+
+    it "Se debe de poder comprobar si una fracion es mayor que otra" do
+        rat2 = RationalNumber.new(0, 1)
+        (@rat > rat2).should == true
+    end
+
+    it "Se debe de poder comprobar si una fracion es menor o igual que otra" do
+        rat2 = RationalNumber.new(0, 1)
+        (@rat <= rat2).should == false
+    end
+
+    it "Se debe de poder comprobar si una fracion es mayor o igual que otra" do
+        rat2 = RationalNumber.new(0, 1)
+        (@rat >= rat2).should == true
     end
 
 end
